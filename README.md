@@ -23,8 +23,27 @@ Before running this project, make sure you have the following installed:
 #### 1. Clone the Repository  
 To start, clone the repository to your local machine using git and navigate into the project folder:
 
-<pre> git clone https://github.com/laasya-konidala/Fetch_Challenge.git </pre>  
-<pre> cd Fetch_Challenge </pre>
+<pre>
+  <code id="code1">git clone https://github.com/laasya-konidala/Fetch_Challenge.git</code>
+  <button onclick="copyToClipboard('#code1')">Copy</button>
+</pre>
+
+<pre>
+  <code id="code2">cd Fetch_Challenge</code>
+  <button onclick="copyToClipboard('#code2')">Copy</button>
+</pre>
+
+<script>
+function copyToClipboard(element) {
+  var $temp = document.createElement("textarea");
+  document.body.appendChild($temp);
+  $temp.value = document.querySelector(element).textContent;
+  $temp.select();
+  document.execCommand("copy");
+  document.body.removeChild($temp);
+}
+</script>
+
 
 > *The first command downloads the project to your machine, and the second command moves you into the project directory.*
 
