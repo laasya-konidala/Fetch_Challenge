@@ -31,7 +31,7 @@ This will install FastAPI for building the API, Uvicorn as the server, and Pydan
 
 3. Run the FastAPI Server
 Once everything is set up, you can run the server with Uvicorn in your terminal:
-<pre> uvicorn service:app --reload --host 0.0.0.0 --port 8000 </pre>
+<pre> python -m uvicorn service:app --reload --host 0.0.0.0 --port 8000 </pre>
 
 ### How to Use the API
 You can interact with the API using curl requests. Below are the available endpoints and their usage.
