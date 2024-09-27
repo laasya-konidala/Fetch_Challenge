@@ -1,88 +1,86 @@
-# Fetch Backend Challenge
-This project is a simple API for managing point transactions from different payers. It allows users to add points, spend points, and retrieve their current point balance from different payers. 
+# Fetch Backend Challenge 🚀
+This project is a simple API for managing point transactions from different payers. It allows users to add points, spend points, and retrieve their current point balance from different payers. Below is a guide to help you set it up and interact with the API smoothly.
 
-### Features
+### Features ✨
 
-**Add Points**: Add points from specific payers with a timestamp.
-
-**Spend Points**: Spend points in a First-In-First-Out (FIFO) order based on the transaction timestamps.
-
+**Add Points**: Add points from specific payers, associated with a timestamp.  
+**Spend Points**: Spend points in a First-In-First-Out (FIFO) order based on the transaction timestamps.  
 **Retrieve Balance**: Retrieve the current balance of points for each payer.
 
-### Prerequisites
+---
+
+### Prerequisites 🛠️
 
 Before running this project, make sure you have the following installed:
 
-Python (Version 3.7 or higher)
-If you don't have Python installed, you can download it from the official Python website: https://www.python.org/downloads/
+- **Python (Version 3.7 or higher)**: You can download Python from the official [Python website](https://www.python.org/downloads/).  
+- **pip (Python Package Manager)**: pip usually comes with Python. If it’s not installed, you can follow the instructions [here](https://pip.pypa.io/en/stable/installation/).
 
-pip (Python Package Manager)
-This usually comes with Python, but if not, follow the instructions here to install it: https://pip.pypa.io/en/stable/installation/
+---
 
-### Step-by-Step Installation and Setup
-1. Clone the repository to your local machine using git
-<pre> git clone https://github.com/laasya-konidala/Fetch_Challenge.git  </pre>
-<pre> cd Fetch_Challenge  </pre>
+### Step-by-Step Installation and Setup ⚙️
 
+#### 1. Clone the Repository  
+To start, clone the repository to your local machine using git and navigate into the project folder:
 
-2. Install Required Python Packages
+<pre> git clone https://github.com/laasya-konidala/Fetch_Challenge.git </pre>  
+<pre> cd Fetch_Challenge </pre>
+
+> *The first command downloads the project to your machine, and the second command moves you into the project directory.*
+
+---
+
+#### 2. Install Required Python Packages 📦  
+Install the necessary Python packages using pip to get the project dependencies installed:
+
 <pre> pip install fastapi uvicorn pydantic </pre>
-This will install FastAPI for building the API, Uvicorn as the server, and Pydantic for request validation.
 
-3. Run the FastAPI Server
-Once everything is set up, you can run the server with Uvicorn in your terminal:
+> *This command installs FastAPI (for the API), Uvicorn (for the server), and Pydantic (for request validation).*
+
+---
+
+#### 3. Run the FastAPI Server 🚀  
+After installing the dependencies, run the server using Uvicorn:
+
 <pre> python -m uvicorn service:app --reload --host 0.0.0.0 --port 8000 </pre>
 
-### How to Use the API
-You can interact with the API using curl requests. Below are the available endpoints and their usage.
+> *The server will run on your local machine at port 8000, and the `--reload` flag allows hot reloading during development.*
 
-1. Add Points: adds points from a payer at a timestamp.
+---
 
-Endpoint: POST /add
+### How to Use the API 🖥️  
+You can interact with the API using curl requests. Below are the available endpoints and how to use them:
 
-Example request using curl:
+#### Add Points: Adds points from a payer at a timestamp.
 
-<pre> curl -X POST "http://localhost:8000/add" \
-     --header "Content-Type: application/json" \
-     --data "{\"payer\": \"DANNON\", \"points\": 1000, \"timestamp\": \"2022-11-01T14:00:00Z\"}" </pre>
-     
-2. Spend Points: spend points from the balance, following the FIFO rule based on the timestamps.
+- **Endpoint**: POST /add
 
-Endpoint: POST /spend
+<pre> curl -X POST \"http://localhost:8000/add\" \  
+     --header \"Content-Type: application/json\" \  
+     --data \"{\\\"payer\\\": \\\"DANNON\\\", \\\"points\\\": 1000, \\\"timestamp\\\": \\\"2022-11-01T14:00:00Z\\\"}\" </pre>
 
-Example request using curl:
+---
 
-<pre> curl -X POST "http://localhost:8000/spend" \
-     --header "Content-Type: application/json" \
-     --data "{\"points\": 500}" </pre>
-     
-Response: A list of payers and the points spent.
+#### Spend Points: Spend points from the balance, following the FIFO rule based on the timestamps.
 
-<pre> [
-  { "payer": "DANNON", "points": -100 },
-  { "payer": "UNILEVER", "points": -200 }
-] </pre>
+- **Endpoint**: POST /spend
 
-Error Handling: If you try to spend more points than available, the API will return a 400 status code and a message "Not enough points to spend!".
+<pre> curl -X POST \"http://localhost:8000/spend\" \  
+     --header \"Content-Type: application/json\" \  
+     --data \"{\\\"points\\\": 500}\" </pre>
 
-3. Get Balance: retrieve the current balance of points for each payer.
+---
 
-Endpoint: GET /balance
+#### Get Balance: Retrieve the current balance of points for each payer.
 
-Example request using curl:
+- **Endpoint**: GET /balance
 
-<pre> curl -X GET "http://localhost:8000/balance" </pre>
- 
-Response:
-<pre> {
-  "DANNON": 1000,
-  "UNILEVER": 0,
-  "MILLER COORS": 5300
-}  </pre>
+<pre> curl -X GET \"http://localhost:8000/balance\" </pre>
 
-### Understanding the Code
-core.py: This file contains the core business logic for adding, spending, and retrieving point balances.
+---
 
-request_body.py: Contains Pydantic models for validating incoming request data.
+### Understanding the Code 📂
 
-service.py: Defines the API endpoints for adding points, spending points, and getting the current balance.
+- **core.py**: This file contains the core business logic for adding, spending, and retrieving point balances.  
+- **request_body.py**: Contains Pydantic models for validating incoming request data.  
+- **service.py**: Defines the API endpoints for adding points, spending points, and retrieving the current balance.
