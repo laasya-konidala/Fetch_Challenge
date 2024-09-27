@@ -85,4 +85,4 @@ core.py: This file contains the core business logic for adding, spending, and re
 
 request_body.py: Contains Pydantic models for validating incoming request data.
 
-server.py: Defines the API endpoints for adding points, spending points, and getting the current balance.
+service.py: Defines the API endpoints for adding points, spending points, and getting the current balance.
