@@ -21,115 +21,66 @@ This usually comes with Python, but if not, follow the instructions here to inst
 
 ### Step-by-Step Installation and Setup
 1. Clone the repository to your local machine using git
-<pre> ```bash curl -X POST "http://localhost:8000/add" --header "Content-Type: application/json" --data "{\"payer\": \"DANNON\", \"points\": 1000, \"timestamp\": \"2022-11-01T14:00:00Z\"}" ``` </pre>
-First, clone the project to your local machine using git:
+<pre> https://github.com/laasya-konidala/Fetch_Challenge.git  </pre>
 
-bash
-Copy code
-git clone https://github.com/your-repo/points-management-api.git
-Navigate to the project directory:
-
-bash
-Copy code
-cd points-management-api
 2. Install Required Python Packages
-Install the necessary dependencies using pip:
-
-bash
-Copy code
-pip install fastapi uvicorn pydantic
+<pre> pip install fastapi uvicorn pydantic </pre>
 This will install FastAPI for building the API, Uvicorn as the server, and Pydantic for request validation.
 
 3. Run the FastAPI Server
-Once everything is set up, you can run the server with Uvicorn:
+Once everything is set up, you can run the server with Uvicorn in your terminal:
+<pre> uvicorn service:app --reload --host 0.0.0.0 --port 8000 </pre>
 
-bash
-Copy code
-uvicorn service:app --reload --host 0.0.0.0 --port 8000
-The server will start at http://localhost:8000.
-The --reload flag ensures that the server restarts automatically when you make changes during development.
-The --host 0.0.0.0 makes it accessible on your network, and --port 8000 sets the port.
-How to Use the API
-You can interact with the API using curl or any HTTP client like Postman. Below are the available endpoints and their usage.
+### How to Use the API
+You can interact with the API using curl requests. Below are the available endpoints and their usage.
 
-1. Add Points
-Adds points from a payer with a timestamp.
+1. Add Points: adds points from a payer at a timestamp.
 
 Endpoint: POST /add
-Request Body: JSON
+
 Example request using curl:
 
-bash
-Copy code
-curl -X POST "http://localhost:8000/add" \
+<pre> curl -X POST "http://localhost:8000/add" \
      --header "Content-Type: application/json" \
-     --data "{\"payer\": \"DANNON\", \"points\": 1000, \"timestamp\": \"2022-11-01T14:00:00Z\"}"
-2. Spend Points
-Spend points from the balance, following the FIFO rule based on the timestamps.
+     --data "{\"payer\": \"DANNON\", \"points\": 1000, \"timestamp\": \"2022-11-01T14:00:00Z\"}" </pre>
+     
+2. Spend Points: spend points from the balance, following the FIFO rule based on the timestamps.
 
 Endpoint: POST /spend
-Request Body: JSON
+
 Example request using curl:
 
-bash
-Copy code
-curl -X POST "http://localhost:8000/spend" \
+<pre> curl -X POST "http://localhost:8000/spend" \
      --header "Content-Type: application/json" \
-     --data "{\"points\": 500}"
+     --data "{\"points\": 500}" </pre>
+     
 Response: A list of payers and the points spent.
-json
-Copy code
-[
+
+<pre> [
   { "payer": "DANNON", "points": -100 },
   { "payer": "UNILEVER", "points": -200 }
-]
+] </pre>
+
 Error Handling: If you try to spend more points than available, the API will return a 400 status code and a message "Not enough points to spend!".
-3. Get Balance
-Retrieve the current balance of points for each payer.
+
+3. Get Balance: retrieve the current balance of points for each payer.
 
 Endpoint: GET /balance
-Response: JSON map of payer balances.
+
 Example request using curl:
 
-bash
-Copy code
-curl -X GET "http://localhost:8000/balance"
+<pre> curl -X GET "http://localhost:8000/balance" </pre>
+ 
 Response:
-json
-Copy code
-{
+<pre> {
   "DANNON": 1000,
   "UNILEVER": 0,
   "MILLER COORS": 5300
-}
-Example Usage
-To add points to the account:
+}  </pre>
 
-bash
-Copy code
-curl -X POST "http://localhost:8000/add" \
-     --header "Content-Type: application/json" \
-     --data "{\"payer\": \"DANNON\", \"points\": 1000, \"timestamp\": \"2022-11-01T14:00:00Z\"}"
-To check the current balance:
-
-bash
-Copy code
-curl -X GET "http://localhost:8000/balance"
-To spend points:
-
-bash
-Copy code
-curl -X POST "http://localhost:8000/spend" \
-     --header "Content-Type: application/json" \
-     --data "{\"points\": 20}"
-Understanding the Code
+### Understanding the Code
 core.py: This file contains the core business logic for adding, spending, and retrieving point balances.
 
-add_points(payer, points, timestamp): Adds points for a payer.
-spend_points(points): Spends points using FIFO (first-in, first-out) based on transaction time.
-retrieve_balance(): Retrieves the current balance of points from all payers.
 request_body.py: Contains Pydantic models for validating incoming request data.
 
-AddPoints: Validates data for adding points (payer, points, timestamp).
-SpendPoints: Validates the amount of points to spend.
-main.py: Defines the API endpoints for adding points, spending points, and getting the current balance.
+server.py: Defines the API endpoints for adding points, spending points, and getting the current balance.
