@@ -1,0 +1,40 @@
+1. Why did you choose the tools, libraries, and language you used for the coding exercise?
+I chose to use FastAPI and Python because I became familiar with them during my summer
+research at Stanford’s Multiscale Architecture & Systems Team, where I built a FastAPI-based
+serving system for large-scale applications. FastAPI’s performance and ease of use make it ideal
+for building APIs quickly, and Python’s flexibility allows for rapid development. I used Pydantic
+for data validation, as it integrates seamlessly with FastAPI and provides robust type-checking and
+validation for incoming requests. I also leveraged Python’s collections module, particularly defaultdict,
+for efficient handling of data structures like payer balances, which simplified the logic for managing transactions.
+
+
+2. What are the advantages and disadvantages of your solution?
+
+Advantages:
+1) The solution is decomposed into several files for core logic, API endpoints, and request body types,
+ensuring the solution is easily maintainable, adaptable, and readable. 
+2) The solution uses straightforward logic and data structures to implement the core functionality.
+3) The solution relies on Pydantic models to validate the request bodies, ensuring the incoming data is well-structured.
+
+Disadvantages:
+1) The data is stored in in-memory structures, so the current solution would not scale well if the number of users
+or transactions significantly increased (the current solution would consume too much memory). 
+2) The data isn't stored in a persistent database, so when the server is killed, all the data is lost. 
+In a real-world environment, it would be important to maintain records of transactions and balances. 
+3) The current solution can't handle several concurrent requests. In real-world applications, several clients could use
+the points service at the same time. 
+4) To decrement the points across various payers when the user wants to spend points, the current solution 
+iterates through all the transactions from oldest to newest to decrement points. With very large datasets, this solution 
+is inefficient. 
+
+3. What has been a favorite school/personal project thus far? What about it that challenged you?
+One of the most rewarding projects I’ve worked on was as a Research Intern at Stanford’s Multiscale 
+Architecture & Systems Team, where I optimized Retrieval-Augmented Generation (RAG) for large language model 
+(LLM) pipeline serving systems. Despite having no prior experience with tools like FastAPI, serving systems,
+Chroma, or working with OpenAI models, I developed the backend of a FastAPI-based retrieval service that leverages 
+Retrieval Augmented Generation to retrieve the top-k relevant contexts from full-length movies and novels. 
+Building the system architecture from scratch was particularly challenging, especially in designing a solution
+that could adapt to diverse user needs—whether users asked highly specific questions or broader, thematic ones.
+However, my strong drive to learn and embrace new technologies made the experience incredibly rewarding.
+Balancing scalability, accuracy, cost, and latency pushed me to think critically and provided me with a valuable
+learning opportunity in designing adaptable, large-scale AI systems.
