@@ -25,24 +25,13 @@ To start, clone the repository to your local machine using git and navigate into
 
 <pre>
   <code id="code1">git clone https://github.com/laasya-konidala/Fetch_Challenge.git</code>
-  <button onclick="copyToClipboard('#code1')">Copy</button>
+  <button onclick="copyToClipboard('#code1')"></button>
 </pre>
 
 <pre>
   <code id="code2">cd Fetch_Challenge</code>
-  <button onclick="copyToClipboard('#code2')">Copy</button>
+  <button onclick="copyToClipboard('#code2')"></button>
 </pre>
-
-<script>
-function copyToClipboard(element) {
-  var $temp = document.createElement("textarea");
-  document.body.appendChild($temp);
-  $temp.value = document.querySelector(element).textContent;
-  $temp.select();
-  document.execCommand("copy");
-  document.body.removeChild($temp);
-}
-</script>
 
 
 > *The first command downloads the project to your machine, and the second command moves you into the project directory.*
@@ -52,7 +41,10 @@ function copyToClipboard(element) {
 #### 2. Install Required Python Packages 📦  
 Install the necessary Python packages using pip to get the project dependencies installed:
 
-<pre> pip install fastapi uvicorn pydantic </pre>
+<pre>
+  <code id="code3">pip install fastapi uvicorn pydantic</code>
+  <button onclick="copyToClipboard('#code3')"></button>
+</pre>
 
 > *This command installs FastAPI (for the API), Uvicorn (for the server), and Pydantic (for request validation).*
 
@@ -61,7 +53,10 @@ Install the necessary Python packages using pip to get the project dependencies 
 #### 3. Run the FastAPI Server 🚀  
 After installing the dependencies, run the server using Uvicorn:
 
-<pre> python -m uvicorn service:app --reload --host 0.0.0.0 --port 8000 </pre>
+<pre>
+  <code id="code4">python -m uvicorn service:app --reload --host 0.0.0.0 --port 8000</code>
+  <button onclick="copyToClipboard('#code4')"></button>
+</pre>
 
 > *The server will run on your local machine at port 8000, and the `--reload` flag allows hot reloading during development.*
 
@@ -74,9 +69,12 @@ You can interact with the API using curl requests. Below are the available endpo
 
 - **Endpoint**: POST /add
 
-<pre> curl -X POST \"http://localhost:8000/add\" \  
-     --header \"Content-Type: application/json\" \  
-     --data \"{\\\"payer\\\": \\\"DANNON\\\", \\\"points\\\": 1000, \\\"timestamp\\\": \\\"2022-11-01T14:00:00Z\\\"}\" </pre>
+<pre>
+  <code id="code5">curl -X POST "http://localhost:8000/add" \
+     --header "Content-Type: application/json" \
+     --data "{\"payer\": \"DANNON\", \"points\": 1000, \"timestamp\": \"2022-11-01T14:00:00Z\"}"</code>
+  <button onclick="copyToClipboard('#code5')"></button>
+</pre>
 
 ---
 
@@ -84,9 +82,12 @@ You can interact with the API using curl requests. Below are the available endpo
 
 - **Endpoint**: POST /spend
 
-<pre> curl -X POST \"http://localhost:8000/spend\" \  
-     --header \"Content-Type: application/json\" \  
-     --data \"{\\\"points\\\": 500}\" </pre>
+<pre>
+  <code id="code6">curl -X POST "http://localhost:8000/spend" \
+     --header "Content-Type: application/json" \
+     --data "{\"points\": 500}"</code>
+  <button onclick="copyToClipboard('#code6')"></button>
+</pre>
 
 ---
 
@@ -94,7 +95,10 @@ You can interact with the API using curl requests. Below are the available endpo
 
 - **Endpoint**: GET /balance
 
-<pre> curl -X GET \"http://localhost:8000/balance\" </pre>
+<pre>
+  <code id="code7">curl -X GET "http://localhost:8000/balance"</code>
+  <button onclick="copyToClipboard('#code7')"></button>
+</pre>
 
 ---
 
