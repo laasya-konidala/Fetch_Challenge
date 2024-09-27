@@ -21,7 +21,7 @@ This usually comes with Python, but if not, follow the instructions here to inst
 
 ### Step-by-Step Installation and Setup
 1. Clone the repository to your local machine using git
-<pre> https://github.com/laasya-konidala/Fetch_Challenge.git  </pre>
+<pre> git clone https://github.com/laasya-konidala/Fetch_Challenge.git  </pre>
 
 2. Install Required Python Packages
 <pre> pip install fastapi uvicorn pydantic </pre>
