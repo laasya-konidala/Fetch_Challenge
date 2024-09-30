@@ -1,4 +1,4 @@
-# Fetch Backend Challenge 🚀
+# Backend Challenge 🚀
 This project is a simple API for managing point transactions from different payers. It allows users to add points, spend points, and retrieve their current point balance from different payers. Below is a guide to help you set it up and interact with the API smoothly.
 
 ### Features ✨
